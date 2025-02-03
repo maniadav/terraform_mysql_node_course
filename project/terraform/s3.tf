@@ -1,7 +1,6 @@
 # create a new bucket
 resource "aws_s3_bucket" "tf_s3_bucket" {
-  bucket = "nodejs-app-static-files-bkt"
-
+  bucket = "tf_node_mysql_bucket"
   tags = {
     Name        = "NodeJs Static Files"
     Environment = "Dev"
