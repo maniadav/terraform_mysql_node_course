@@ -3,7 +3,7 @@ const tableBody = document.querySelector("#data-table tbody");
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch("/users"); // Fetch the data from the server
+    const response = await fetch("/user"); // Fetch the data from the server
     const data = await response.json(); // Await the JSON parsing
 
     data.forEach((row) => {
