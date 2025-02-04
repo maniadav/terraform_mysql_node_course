@@ -1,13 +1,13 @@
 # RDS configuration
 resource "aws_db_instance" "tf_rds_instance" {
   allocated_storage      = 10
-  db_name                = "tf_demo" # name of database to create
-  identifier             = "nodejs-rds"
+  db_name                = "tf-mysql-node-db" # name of database to create
+  identifier             = "tf-mysql-node-rds"
   engine                 = "mysql"
   engine_version         = "8.0"
   instance_class         = "db.t3.micro"
-  username               = "admin"
-  password               = "kunal123"
+  username               = "maniadav"
+  password               = "manish123"
   parameter_group_name   = "default.mysql8.0"
   vpc_security_group_ids = [aws_security_group.rds_sg.id] # attach RDS security group
   skip_final_snapshot    = true

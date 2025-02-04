@@ -1,16 +1,16 @@
 # EC2 instance configuration
 resource "aws_instance" "tf_server" {
-  ami                         = "ami-0e86e20dae9224db8" # change according to region
+  ami                         = "ami-00bb6a80f01f03502" # change according to region, you can get from creation page
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.ec2_sg.id] # associate security group
   associate_public_ip_address = true
-  key_name                    = "" # private aws key name
+  key_name                    = "tf_mysql_node_key_pair" # private aws key name
   user_data                   = <<-EOF
                                 #!/bin/bash
 
                                 # Git clone 
-                                git clone https://github.com/verma-kunal/nodejs-mysql.git /home/ubuntu/nodejs-mysql
-                                cd /home/ubuntu/nodejs-mysql
+                                git clone https://github.com/maniadav/tf_mysql_node.git /home/ubuntu/tf_mysql_node
+                                cd /home/ubuntu/tf_mysql_node
 
                                 # install nodejs
                                 sudo apt update -y

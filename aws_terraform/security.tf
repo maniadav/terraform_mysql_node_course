@@ -37,35 +37,6 @@ resource "aws_security_group" "ec2_sg" {
   }
 }
 
-# Security group for EC2 instance (using terraform module)
-# module "tf_ec2_module" {
-#   source  = "terraform-aws-modules/security-group/aws"
-#   version = "5.2.0"
-#   vpc_id  = "" # default VPC
-#   name    = "ec2-security-group"
-
-#   ingress_cidr_blocks = [
-#     {
-#       from_port   = 3000
-#       to_port     = 3000
-#       protocol    = "tcp"
-#       description = "for nodejs app"
-#       cidr_blocks = "0.0.0.0/0"
-#     },
-#     {
-#       rule        = "https-443-tcp"
-#       cidr_blocks = "0.0.0.0/0"
-#     },
-#     {
-#       rule        = "ssh-tcp"
-#       cidr_blocks = "0.0.0.0/0"
-#     },
-
-#   ]
-#   egress_rules = ["all-all"]
-# }
-
-
 # output
 output "ec2_public_ip" {
   value = aws_instance.tf_server.public_ip
