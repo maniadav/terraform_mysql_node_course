@@ -11,6 +11,8 @@ const app = express();
 // Set the public directory for static files
 app.use(express.static(path.join(__dirname, "public")));
 
+const tableName = process.env.TABLE_NAME;
+const port = process.env.PORT || 3000;
 // connect to db
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -24,7 +26,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const tableName = process.env.TABLE_NAME;
+
 app.get(`/${tableName}`, (req, res) => {
   const query = `SELECT * FROM ${tableName}`;
   db.query(query, (err, results) => {
@@ -42,7 +44,6 @@ db.connect((err) => {
 });
 
 // Start the server
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
