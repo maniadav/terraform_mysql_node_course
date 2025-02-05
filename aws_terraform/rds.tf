@@ -23,7 +23,7 @@ resource "aws_security_group" "rds_sg" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    cidr_blocks     = ["152.59.178.255/32"]           # your system local IP address
+    cidr_blocks     = [""]           # your system local IP address, add /32 for single ip 
     security_groups = [aws_security_group.ec2_sg.id] # Allow traffic from EC2 security group
   }
 
