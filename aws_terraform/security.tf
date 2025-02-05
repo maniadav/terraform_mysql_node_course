@@ -1,9 +1,12 @@
+data "aws_vpc" "default" {
+  default = true
+}
 
 # Security group for EC2 instance
 resource "aws_security_group" "ec2_sg" {
   name        = "allow_ssh_http"
   description = "Allow SSH and HTTP traffic"
-  vpc_id      = "vpc-00ec4841e453b1748" # default VPC
+  vpc_id      =   data.aws_vpc.default.id
 
   ingress {
     description = "TLS from VPC"

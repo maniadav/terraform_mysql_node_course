@@ -1,8 +1,8 @@
 # RDS configuration
 resource "aws_db_instance" "tf_rds_instance" {
   allocated_storage      = 10
-  db_name                = "tf-mysql-node-db" # name of database to create
-  identifier             = "tf-mysql-node-rds"
+  db_name                = "tfmysqlnodedb" # name of database to create
+  identifier             = "tfmysqlnoderds"
   engine                 = "mysql"
   engine_version         = "8.0"
   instance_class         = "db.t3.micro"
@@ -15,7 +15,7 @@ resource "aws_db_instance" "tf_rds_instance" {
 }
 
 resource "aws_security_group" "rds_sg" {
-  vpc_id      = "vpc-00ec4841e453b1748" # default VPC
+  vpc_id      = data.aws_vpc.default.id
   name        = "allow_mysql"
   description = "Allow MySQL traffic"
 
@@ -23,7 +23,7 @@ resource "aws_security_group" "rds_sg" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    cidr_blocks     = [""]           # local IP address
+    cidr_blocks     = ["152.59.178.255/32"]           # your system local IP address
     security_groups = [aws_security_group.ec2_sg.id] # Allow traffic from EC2 security group
   }
 
